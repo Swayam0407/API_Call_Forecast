@@ -55,13 +55,9 @@ The project includes a sleek **Matrix-themed interface** for making predictions:
 ### **User Flow**:  
 1. **Input the API code** and desired number of predictions in the provided fields.  
 2. Hit the **"Predict" button**, styled like a command terminal.  
-3. View the prediction results in a clean, tabular format overlaid with glowing borders.  
+3. View the prediction results in a clean, tabular format.
 
----
-
-## 📸 **Preview**  
-
-
+   
 ---
 
 ## 🛠️ **Technologies Used**  
