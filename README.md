@@ -48,9 +48,7 @@ The project includes a sleek **Matrix-themed interface** for making predictions:
 
 ### **Features**:  
 - A **dark, green-on-black theme**, replicating the iconic Matrix aesthetic.  
-- Scrolling binary code animation in the background to enhance the immersive experience.  
-- Intuitive input fields styled with neon highlights for selecting the API and specifying the number of predictions.  
-- Real-time prediction results displayed with futuristic animations.  
+- Scrolling binary code animation with intuitive input fields 
 
 ### **User Flow**:  
 1. **Input the API code** and desired number of predictions in the provided fields.  
