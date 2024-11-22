@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forecasting API</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: #00FF00;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+
+        h1 {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 3em;
+            color: #00FF00;
+            text-shadow: 0 0 10px #00FF00;
+            z-index: 2;
+        }
+
+        /* Matrix rain effect */
+        .matrix-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .matrix-rain span {
+            position: absolute;
+            color: #00FF00;
+            font-size: 20px;
+            animation: rain-animation 2s linear infinite;
+        }
+
+        @keyframes rain-animation {
+            0% {
+                transform: translateY(-100%);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        /* Form card container */
+        .forecast-container {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00FF00;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            z-index: 2;
+            width: 400px;
+            text-align: center;
+        }
+
+        select,
+        input[type="number"],
+        input[type="submit"] {
+            background-color: transparent;
+            border: 2px solid #00FF00;
+            color: #00FF00;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            padding: 10px;
+            margin: 15px 0;
+            width: 80%;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #00FF00;
+            color: black;
+            cursor: pointer;
+        }
+
+        .forecast-container h2 {
+            color: #00FF00;
+            text-shadow: 0 0 10px #00FF00;
+            font-size: 2em;
+        }
+
+        /* Forecast result list styling */
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 20px;
+            border: 1px solid #00FF00;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        li {
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #00FF00;
+            word-wrap: break-word;
+        }
+
+        /* Footer section */
+        .footer-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            /* Arrange in a column */
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-icon {
+            font-size: 2em;
+            color: #00FF00;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .footer-icon:hover {
+            color: #00FF00;
+            text-shadow: 0 0 10px #00FF00;
+        }
+
+        .twitter-handle {
+            color: #00FF00;
+            font-size: 1.5em;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            text-shadow: 0 0 10px #00FF00;
+        }
+
+        /* Icon row alignment */
+        .icon-row {
+            display: flex;
+            gap: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>API Call Forecasting</h1>
+
+    <div class="matrix-rain" id="matrixRain"></div>
+
+    <div class="forecast-container">
+        <form method="POST">
+            <label for="api_code">API Code:</label>
+            <select name="api_code" id="api_code" required>
+                <option value="A2">A2</option>
+                <option value="A7">A7</option>
+                <option value="A9">A9</option>
+            </select><br><br>
+
+            <label for="occurrences">Number of Occurrences:</label>
+            <input type="number" name="occurrences" id="occurrences" required><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+
+        {% if forecast_results %}
+        <h2>Forecast Results</h2>
+        {% if forecast_results == "Invalid API Code Selected!" %}
+        <p>{{ forecast_results }}</p>
+        {% else %}
+        <ul>
+            {% for timestamp in forecast_results %}
+            <li><strong>{{ timestamp }}</strong></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endif %}
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <p class="twitter-handle">@swayam_aggarwal</p>
+            <div class="icon-row">
+                <a href="https://www.linkedin.com/in/swayamaggarwal/" target="_blank" class="footer-icon">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/Swayam0407" target="_blank" class="footer-icon">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:swayam04smile@gmail.com" class="footer-icon">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const matrixRain = document.getElementById('matrixRain');
+        const columns = Math.floor(window.innerWidth / 20);
+        const rows = Math.floor(window.innerHeight / 20);
+        const chars = ['0', '1'];
+        const drops = [];
+
+        for (let i = 0; i < columns; i++) {
+            drops.push({
+                x: i * 20,
+                y: Math.random() * window.innerHeight,
+                speed: Math.random() * 5 + 1,
+            });
+        }
+
+        function createMatrixRain() {
+            matrixRain.innerHTML = '';  // Reset the rain
+
+            drops.forEach((drop, index) => {
+                const rainElement = document.createElement('span');
+                rainElement.style.left = `${drop.x}px`;
+                rainElement.style.top = `${drop.y}px`;
+                rainElement.style.animationDuration = `${drop.speed}s`;
+                rainElement.textContent = chars[Math.floor(Math.random() * chars.length)];
+
+                matrixRain.appendChild(rainElement);
+                drop.y += drop.speed;
+                if (drop.y > window.innerHeight) {
+                    drop.y = 0; // Reset the drop to the top
+                }
+            });
+
+            requestAnimationFrame(createMatrixRain);
+        }
+
+        createMatrixRain();
+    </script>
+</body>
+
+</html>
