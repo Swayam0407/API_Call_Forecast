@@ -8,6 +8,9 @@ Due to size constraints, the **model files and related code** are not included i
 
 ---
 
+![ScreenRecording2024-11-22at12 29 39PM-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/48fed3dc-ac40-4aac-9280-334d415c41b7)
+
+
 ## 🧠 **Project Overview**  
 This project tackles the problem of predicting API call times using **time series analysis** and machine learning techniques. The solution follows a structured approach:  
 
